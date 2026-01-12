@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { createContact, editContact } from "../components/APIServices";
+import { createContact, editContact } from "../Services/APIServices";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
 const Form = () => {

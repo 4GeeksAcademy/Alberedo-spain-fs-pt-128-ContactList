@@ -1,7 +1,7 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import ContactCard from "../components/ContactCard.jsx";
 import { useEffect } from "react";
-import { getContacts } from "../components/APIServices.jsx";
+import { getContacts } from "../Services/APIServices.jsx";
 import { Link } from "react-router-dom";
 
 export const Home = () => {

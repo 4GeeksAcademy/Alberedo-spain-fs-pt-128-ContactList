@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { deleteContact } from "./APIServices"
+import { deleteContact } from "../Services/APIServices"
 import useGlobalReducer from "../hooks/useGlobalReducer"
 
 
