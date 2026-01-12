@@ -1,40 +1,54 @@
-import React from "react"
 
-const USER = "Alberto"
+const SLUG = "Alberto"
 const BASE_API = "https://playground.4geeks.com/contact"
 
-
-export const getContacts = async(dispatch)=>{
-    const response = await fetch(`${BASE_API}/agendas/${USER}/contacts`)
-    if(!response.ok){
+//region:getContacts
+export const getContacts = async (dispatch) => {
+    const response = await fetch(`${BASE_API}/agendas/${SLUG}/contacts`)
+    if (!response.ok) {
         console.log("No existe el usuario elegido");
-        createSlug(USER)
+        createSlug(SLUG)
     }
     const data = await response.json()
     console.log(data)
-    dispatch({type:'set_contacts', payload: data.contacts}) 
+    dispatch({ type: 'set_contacts', payload: data.contacts })
 }
 
-const createSlug = async(slugName, dispatch)=>{
+//region:createSlug
+const createSlug = async (slugName) => {
     const response = await fetch(`${BASE_API}/agendas/${slugName}`,
-        {method:"POST"}
+        { method: "POST" }
     )
-    response.ok ? console.log(`Se ha creado el usuario ${USER} correctamente`): console.log(`Ha habido un error al crear el usuario ${USER}`);
+    response.ok ? console.log(`Se ha creado el usuario ${SLUG} correctamente`) : console.log(`Ha habido un error al crear el usuario ${SLUG}`);
 }
 
-//Hay que borrarlo cuando se cree el formulario
-const pepito = {
-  "name": "Pepito el de los palotes",
-  "phone": "666555666",
-  "email": "pepidelospalotes@gmail.com",
-  "address": "Lugar inventado nº 999"
-}
-
-export const createContact = async()=>{
-    const response = await fetch(`${BASE_API}/agendas/${USER}/contacts`,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(pepito)
+//region:createContact
+export const createContact = async (contact, dispatch, navigate) => {
+    const response = await fetch(`${BASE_API}/agendas/${SLUG}/contacts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contact)
     })
     console.log(response);
+    dispatch({ type: "create_contact", payload: contact })
+    navigate("/")
+}
+
+//region:editContact
+export const editContact = async (contact, navigate) => {
+    const response = await fetch(`${BASE_API}/agendas/${SLUG}/contacts/${contact.id}`, {
+        method: "PUT",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(contact)
+    })
+    console.log(response)
+    navigate("/")
+}
+
+//region:deleteContact
+export const deleteContact = async (contact, dispatch) => {
+    const response = await fetch(`${BASE_API}/agendas/${SLUG}/contacts/${contact.id}`, {
+        method: "DELETE"
+    })
+    await dispatch({ type: 'delete_contact', payload: contact.id })
 }
