@@ -8,6 +8,7 @@ export const getContacts = async (dispatch) => {
     if (!response.ok) {
         console.log("No existe el usuario elegido");
         createSlug(SLUG)
+        response = await fetch(`${BASE_API}/agendas/${SLUG}/contacts`)
     }
     const data = await response.json()
     console.log(data)
