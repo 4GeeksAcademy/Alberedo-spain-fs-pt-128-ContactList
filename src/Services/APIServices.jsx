@@ -8,11 +8,12 @@ export const getContacts = async (dispatch) => {
     if (!response.ok) {
         console.log("No existe el usuario elegido");
         createSlug(SLUG)
-        response = await fetch(`${BASE_API}/agendas/${SLUG}/contacts`)
+        getContacts(dispatch)
+    } else {
+        const data = await response.json()
+        console.log(data)
+        dispatch({ type: 'set_contacts', payload: data.contacts })
     }
-    const data = await response.json()
-    console.log(data)
-    dispatch({ type: 'set_contacts', payload: data.contacts })
 }
 
 //region:createSlug
@@ -21,6 +22,7 @@ const createSlug = async (slugName) => {
         { method: "POST" }
     )
     response.ok ? console.log(`Se ha creado el usuario ${SLUG} correctamente`) : console.log(`Ha habido un error al crear el usuario ${SLUG}`);
+    
 }
 
 //region:createContact

@@ -67,15 +67,15 @@ const Form = () => {
                 <input type="text" value={state.name} onChange={e => dispatch2({ type: "CHANGE", field: "name", value: e.target.value })} placeholder="Full Name" className="form-control" id="fullName" aria-describedby="fullName" />
             </div>
             <div className="mb-3">
-                <label for="email" className="form-label">Email</label>
+                <label htmlFor="email" className="form-label">Email</label>
                 <input type="text" value={state.email} onChange={e => dispatch2({ type: "CHANGE", field: "email", value: e.target.value })} placeholder="Enter email" className="form-control" id="email" aria-describedby="email" />
             </div>
             <div className="mb-3">
-                <label for="phone" className="form-label">Phone</label>
+                <label htmlFor="phone" className="form-label">Phone</label>
                 <input type="text" value={state.phone} onChange={e => dispatch2({ type: "CHANGE", field: "phone", value: e.target.value })} placeholder="Enter phone number" className="form-control" id="phone" aria-describedby="phone" />
             </div>
             <div className="mb-3">
-                <label for="address" className="form-label">Adress</label>
+                <label htmlFor="address" className="form-label">Adress</label>
                 <input type="text" value={state.address} onChange={e => dispatch2({ type: "CHANGE", field: "address", value: e.target.value })} placeholder="Enter address" className="form-control" id="address" aria-describedby="address" />
             </div>
 
